@@ -1,0 +1,17 @@
+{
+  "name": "rage-mp-boot",
+  "version": "1.0.0",
+  "description": "RAGE.MP Depndency injection tool",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ragemp",
+    "dependency",
+    "injection",
+    "container"
+  ],
+  "author": "",
+  "license": "ISC"
+}
