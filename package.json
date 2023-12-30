@@ -1,23 +1,36 @@
 {
-  "name": "rage-mp-boot",
-  "version": "1.0.0",
-  "description": "RAGE.MP Depndency injection tool",
-  "main": "dist/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "ragemp",
-    "dependency",
-    "injection",
-    "container"
-  ],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "lodash": "^4.17.21"
-  },
-  "devDependencies": {
-    "@types/lodash": "^4.14.202"
-  }
+   "name": "rage-mp-boot",
+   "version": "1.0.0",
+   "description": "Lightweight dependency injection for TypeScript and JavaScript",
+   "main": "dist/index.js",
+   "types": "dist/index.d.ts",
+   "scripts": {
+      "build": "tsc -p tsconfig.build.json",
+      "prepare": "npm run build",
+      "watch": "tsc -p tsconfig.build.json -w"
+   },
+   "keywords": [
+      "ragemp",
+      "dependency",
+      "injection",
+      "container",
+      "dependency injection",
+      "dependency",
+      "injection",
+      "di",
+      "typescript",
+      "decorators"
+   ],
+   "author": "",
+   "license": "ISC",
+   "dependencies": {
+      "reflect-metadata": "^0.1.13",
+      "tslib": "^2.3.0"
+   },
+   "devDependencies": {
+      "@types/lodash": "^4.14.202",
+      "@types/node": "^20.10.6",
+      "ts-node": "^10.9.2",
+      "typescript": "^5.3.3"
+   }
 }
