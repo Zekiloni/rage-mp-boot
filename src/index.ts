@@ -4,3 +4,4 @@ export { InjectionError } from './injection-error';
 export { InjectionToken } from './injection-token';
 export { Injector } from './injector';
 export { Provider } from './provider';
+export * from './rage-api';

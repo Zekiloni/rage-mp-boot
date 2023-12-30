@@ -2,6 +2,7 @@ import { Injectable } from './injectable';
 import { InjectionError } from './injection-error';
 import { InjectionToken } from './injection-token';
 import { Type, Provider } from './provider';
+import { EventCollection } from './rage-api';
 
 interface Factory {
    factory(...args: any[]): any;
@@ -13,6 +14,7 @@ export class Injector {
    private factories: Map<any, Factory> = new Map();
    private resolved: Map<any, any> = new Map();
    private parentInjector: Injector | undefined;
+   private events: Map<string, any[]> = new Map();
 
    /**
     * Create a child injector that inherits all factories and resolved values.
@@ -66,6 +68,7 @@ export class Injector {
       do {
          if (injector.resolved.has(token)) {
             const resolvedValue = injector.resolved.get(token);
+            registerEventsForInstance(resolvedValue);
             this.resolved.set(token, resolvedValue);
             return resolvedValue;
          }
@@ -145,6 +148,20 @@ export class Injector {
 
 function tokenName(token: any): string {
    return (token && token.name) || String(token);
+}
+
+function registerEventsForInstance(instance: any): void {
+   const eventsMetadata: EventCollection = Reflect.getMetadata('rage-mp-events', instance);
+
+   if (eventsMetadata) {
+      for (const [eventName, eventData] of Object.entries(eventsMetadata)) {
+         if ('mp' in global) {
+            (<any>global['mp']).events.add(eventName, (...args: any[]) => {
+               instance[eventData.callable](...args);
+            });
+         }
+      }
+   }
 }
 
 function getDiTokens(classConstructor: Function): any[] {
